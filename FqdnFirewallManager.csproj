@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <AssemblyName>FqdnFirewallManager</AssemblyName>
+    <RootNamespace>FqdnFirewallManager</RootNamespace>
+    <Version>1.0.0</Version>
+    <Description>Manage Windows Firewall Dynamic Keyword Addresses (FQDN rules) - standalone WPF port of FqdnFirewallGui.ps1</Description>
+  </PropertyGroup>
+
+</Project>

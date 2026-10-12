@@ -1,0 +1,57 @@
+<Window x:Class="FqdnFirewallManager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="FQDN Firewall Manager" Height="640" Width="1000" MinHeight="480" MinWidth="760"
+        WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+    <Grid Margin="12">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="320"/>
+            <ColumnDefinition Width="12"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Input -->
+        <DockPanel Grid.Column="0">
+            <TextBlock DockPanel.Dock="Top" FontWeight="SemiBold" Text="FQDNs (one per line, or comma separated)" Margin="0,0,0,6"/>
+            <StackPanel DockPanel.Dock="Bottom" Margin="0,8,0,0">
+                <CheckBox x:Name="RemoveMissingCheck" Content="Remove keywords not in this list (if unused)" Margin="0,0,0,8"/>
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="ApplyButton" Content="Apply" Width="90" Margin="0,0,8,0" Click="Apply_Click"/>
+                    <Button x:Name="LoadButton" Content="Load current" Width="100" Margin="0,0,8,0" Click="LoadCurrent_Click"/>
+                    <Button Content="Clear" Width="70" Click="Clear_Click"/>
+                </StackPanel>
+            </StackPanel>
+            <TextBox x:Name="InputBox" AcceptsReturn="True" TextWrapping="NoWrap"
+                     VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
+                     FontFamily="Consolas"/>
+        </DockPanel>
+
+        <!-- Current entries -->
+        <DockPanel Grid.Column="2">
+            <DockPanel DockPanel.Dock="Top" Margin="0,0,0,6">
+                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                    <Button x:Name="RefreshButton" Content="Refresh" Width="80" Margin="0,0,8,0" Click="Refresh_Click"/>
+                    <Button x:Name="RemoveButton" Content="Remove selected" Width="120" Click="RemoveSelected_Click"/>
+                </StackPanel>
+                <TextBlock FontWeight="SemiBold" Text="Dynamic keyword addresses (AutoResolve)" VerticalAlignment="Center"/>
+            </DockPanel>
+            <DataGrid x:Name="EntriesGrid" AutoGenerateColumns="False" IsReadOnly="True"
+                      SelectionMode="Extended" HeadersVisibility="Column" GridLinesVisibility="Horizontal">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Keyword" Binding="{Binding Keyword}" Width="2*"/>
+                    <DataGridTextColumn Header="Resolved addresses" Binding="{Binding Addresses}" Width="2*"/>
+                    <DataGridTextColumn Header="Used by" Binding="{Binding UsedByText}" Width="2*"/>
+                    <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+
+        <!-- Status / log -->
+        <TextBox x:Name="LogBox" Grid.Row="1" Grid.ColumnSpan="3" Height="120" Margin="0,12,0,0"
+                 IsReadOnly="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" FontFamily="Consolas"/>
+    </Grid>
+</Window>
