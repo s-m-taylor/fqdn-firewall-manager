@@ -1,7 +1,8 @@
 # Tool website and distribution
 
-- [ ] Identify the editable sedrictaylor.com project and match its existing nodes.
-- [ ] Create the project icon and browser icon.
-- [ ] Add a single tool page with description, repository link, and direct executable download.
-- [ ] Publish an executable as a GitHub Release asset and verify the repository is public.
-- [ ] Add the tool node to sedrictaylor.com and verify links.
+- [x] Identify sedrictaylor.com as Sedric's Infinite Mind and inspect its existing node standards.
+- [x] Create two project logo options and shield-based PNG/ICO browser icons; inspect at node sizes on light/dark backgrounds.
+- [x] Repair release workflow to upload the executable before signing and attach the signed release asset.
+- [ ] Add the single tool page and direct links — blocked by read-only access to the website project and missing exact GitHub repository URL.
+- [ ] Publish an executable and verify public repository visibility — blocked by unavailable GitHub account access and unverified SignPath configuration; no EXE exists in supplied archives.
+- [ ] Add the website node and verify page/favicon/download — blocked until work continues in the website project.
