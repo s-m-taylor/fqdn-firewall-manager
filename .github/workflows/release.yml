@@ -4,6 +4,12 @@ on:
   push:
     tags:
       - 'v*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Existing version tag to build and release (for example v1.0.0)'
+        required: true
+        type: string
 
 permissions:
   contents: write
@@ -15,6 +21,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag || github.ref }}
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
@@ -22,7 +30,14 @@ jobs:
           dotnet-version: '10.0.x'
 
       - name: Publish self-contained executable
-        run: dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true
+        run: dotnet publish FqdnFirewallManager.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o publish
+
+      - name: Upload executable for signing
+        uses: actions/upload-artifact@v4
+        with:
+          name: unsigned
+          path: publish/FqdnFirewallManager.exe
+          if-no-files-found: error
 
       - name: Sign with SignPath
         uses: signpath/github-action-submit-signing-request@v1
@@ -33,10 +48,20 @@ jobs:
           signing-policy-slug: 'release-signing'
           artifact-configuration-slug: 'initial'
           github-artifact-name: 'unsigned'
+          wait-for-completion: true
           output-artifact-directory: 'signed'
+
+      - name: Verify signed download exists
+        shell: pwsh
+        run: |
+          if (-not (Test-Path './signed/FqdnFirewallManager.exe')) {
+            throw 'The signed executable was not returned by SignPath.'
+          }
 
       - name: Create GitHub Release with signed exe
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: ${{ inputs.tag || github.ref_name }}
           files: ./signed/FqdnFirewallManager.exe
+          fail_on_unmatched_files: true
           generate_release_notes: true
