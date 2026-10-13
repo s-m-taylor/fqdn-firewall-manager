@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: 'Existing version tag to build and release (for example v1.0.0)'
+        description: 'Version tag to create and release (for example v1.0.0). Created from the selected branch if it does not exist.'
         required: true
         type: string
 
@@ -21,8 +21,23 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          ref: ${{ inputs.tag || github.ref }}
+
+      - name: Create tag for manual runs
+        if: github.event_name == 'workflow_dispatch'
+        shell: pwsh
+        run: |
+          $tag = "${{ inputs.tag }}"
+          if (-not $tag.StartsWith('v')) { $tag = "v$tag" }
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag $tag
+          git push origin $tag
+          echo "RELEASE_TAG=$tag" | Out-File -FilePath $env:GITHUB_ENV -Append
+
+      - name: Resolve tag for tag pushes
+        if: github.event_name == 'push'
+        shell: pwsh
+        run: echo "RELEASE_TAG=${{ github.ref_name }}" | Out-File -FilePath $env:GITHUB_ENV -Append
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
@@ -61,7 +76,7 @@ jobs:
       - name: Create GitHub Release with signed exe
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ inputs.tag || github.ref_name }}
+          tag_name: ${{ env.RELEASE_TAG }}
           files: ./signed/FqdnFirewallManager.exe
           fail_on_unmatched_files: true
           generate_release_notes: true
