@@ -1,1 +1,14 @@
-node_modules/
+# .NET build output
+bin/
+obj/
+out/
+
+# Visual Studio / Rider
+.vs/
+.idea/
+*.user
+*.suo
+
+# OS files
+Thumbs.db
+Desktop.ini
