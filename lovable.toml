@@ -1,2 +1,2 @@
 [run]
-dev = "sleep infinity"
+dev = "sh -c \"sleep infinity\" --"
