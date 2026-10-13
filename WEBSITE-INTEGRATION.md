@@ -19,14 +19,15 @@ Requirements: Windows 10 1809+ or Windows 11; administrator access. The
 self-contained Windows x64 download does not need a separately installed
 .NET runtime.
 
-Actions: **Download for Windows** and **View on GitHub**.
+Actions (on the subpage only): **Download for Windows** and **View on GitHub**.
 
-The repository's exact URL still needs confirmation. Once known, the direct
-download URL is its URL followed by:
+Link structure: the sedrictaylor.com home page has only a node linking to
+`/fqdn-firewall-manager`. The direct download link appears only on that
+subpage, never on the home page.
 
-```text
-/releases/latest/download/FqdnFirewallManager.exe
-```
+- Repository: `https://github.com/s-m-taylor/fqdn-firewall-manager`
+- Direct download:
+  `https://github.com/s-m-taylor/fqdn-firewall-manager/releases/latest/download/FqdnFirewallManager.exe`
 
 Do not activate a download button before a published release containing that
 asset returns a successful response. The release workflow requires SignPath
