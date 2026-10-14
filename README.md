@@ -35,14 +35,13 @@ See [BUILD.md](BUILD.md) for full instructions.
 
 ## Releases
 
-Tagged releases (`v*`) are built automatically by GitHub Actions, signed via
-[SignPath Foundation](https://signpath.io/), and attached to a GitHub Release.
+Tagged releases (`v*`) are built automatically by GitHub Actions and
+`FqdnFirewallManager.exe` is attached to a GitHub Release. The workflow can
+also be run manually from Actions with a version tag, which it creates from
+the selected branch.
 
-The workflow uploads the unsigned executable for SignPath, waits for signing,
-and publishes `FqdnFirewallManager.exe` as a release asset. It can also be run
-manually from Actions against an existing version tag. SignPath approval,
-the `SIGNPATH_API_TOKEN` and `SIGNPATH_ORG_ID` repository secrets, and the
-matching signing policy/artifact configuration are required.
+The executable is not code signed, so Windows shows "Publisher: Unknown"
+(and may show a SmartScreen prompt) when it is run.
 
 Use GitHub Releases for executable downloads rather than committing the EXE
 to the source tree. The stable download link is the repository URL followed

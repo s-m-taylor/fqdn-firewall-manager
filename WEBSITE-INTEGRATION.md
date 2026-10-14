@@ -21,11 +21,8 @@ self-contained Windows x64 download does not need a separately installed
 
 Actions (on the subpage only): **Download for Windows** and **View on GitHub**.
 
-Directly under **Download for Windows**, display:
+The executable is unsigned; no code-signing attribution is shown.
 
-> Code signing provided by the SignPath Foundation.
-
-Link **SignPath Foundation** to `https://signpath.org/`.
 
 Link structure: the sedrictaylor.com home page has only a node linking to
 `/fqdn-firewall-manager`. The direct download link appears only on that
