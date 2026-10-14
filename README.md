@@ -54,3 +54,17 @@ page and node handoff.
 ## License
 
 [MIT](LICENSE)
+
+## Verify your download
+
+Each release includes `FqdnFirewallManager.exe.sha256` and the hash in the
+release notes. Compare it with:
+
+```powershell
+(Get-FileHash .\FqdnFirewallManager.exe -Algorithm SHA256).Hash
+```
+
+## WinGet
+
+Release runs also produce ready-to-submit WinGet manifests. See
+[winget/README.md](winget/README.md).
