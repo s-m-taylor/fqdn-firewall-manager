@@ -33,8 +33,7 @@ subpage, never on the home page.
   `https://github.com/s-m-taylor/fqdn-firewall-manager/releases/latest/download/FqdnFirewallManager.exe`
 
 Do not activate a download button before a published release containing that
-asset returns a successful response. The release workflow requires SignPath
-approval and configured signing secrets/policy.
+asset returns a successful response.
 
 ## Website node
 
@@ -67,5 +66,4 @@ icon on this page and the portfolio icon on other pages.
 - Confirm the exact GitHub repository URL and public visibility.
 - Repository settings → General → Danger Zone → Change visibility → Public
   if needed; review the repository for secrets before exposing it.
-- Configure SignPath, then push a version tag or run the release workflow
-  against an existing version tag. A successful release provides the download.
+- Push a version tag or run the release workflow with a version tag. A successful release provides the download.
