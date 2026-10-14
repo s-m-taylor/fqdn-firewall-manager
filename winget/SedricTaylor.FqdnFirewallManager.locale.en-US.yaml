@@ -1,0 +1,19 @@
+PackageIdentifier: SedricTaylor.FqdnFirewallManager
+PackageVersion: {{VERSION}}
+PackageLocale: en-US
+Publisher: Sedric Taylor
+PublisherUrl: https://sedrictaylor.com
+PackageName: FQDN Firewall Manager
+PackageUrl: https://sedrictaylor.com/fqdn-firewall-manager
+License: MIT
+LicenseUrl: https://github.com/s-m-taylor/fqdn-firewall-manager/blob/main/LICENSE
+ShortDescription: Manage Windows Firewall Dynamic Keyword Addresses (FQDN rules).
+Description: Add, view, and remove FQDN dynamic keyword addresses used by outbound Windows Firewall allow rules in default-deny environments. Requires administrator rights.
+Tags:
+  - firewall
+  - fqdn
+  - windows-firewall
+  - security
+ReleaseNotesUrl: https://github.com/s-m-taylor/fqdn-firewall-manager/releases
+ManifestType: defaultLocale
+ManifestVersion: 1.6.0
